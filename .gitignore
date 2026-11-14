@@ -1,0 +1,36 @@
+
+# Gradle
+.gradle/
+build/
+.kotlin/
+
+# Configuración local de Android
+local.properties
+
+# Archivos generados
+*.apk
+*.aab
+*.dex
+*.class
+captures/
+.externalNativeBuild/
+.cxx/
+output-metadata.json
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Firmas y claves privadas
+*.jks
+*.keystore
+
+# Configuración local de servicios
+google-services.json
