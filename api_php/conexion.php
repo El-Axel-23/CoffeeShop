@@ -1,7 +1,7 @@
 <?php
 
 $host="localhost";
-$db="cursos_db";
+$db="coffeeshop_db";
 $user="root";
 $pass="";
 
