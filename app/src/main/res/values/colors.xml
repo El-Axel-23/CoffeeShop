@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="fondo">#FFF4EA</color>
+    <color name="tarjeta">#F8E4D5</color>
+    <color name="cafe">#4A1D14</color>
+    <color name="gris">#6B5A55</color>
+    <color name="linea">#E8D5C6</color>
 </resources>
