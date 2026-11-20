@@ -7,6 +7,9 @@ android {
     compileSdk {
         version = release(37)
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.example.coffeshop"
@@ -61,4 +64,6 @@ dependencies {
     implementation("io.reactivex.rxjava3:rxjava:3.1.11")
     implementation("io.reactivex.rxjava3:rxandroid:3.0.2")
     implementation("com.squareup.retrofit2:adapter-rxjava3:2.12.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+
 }
