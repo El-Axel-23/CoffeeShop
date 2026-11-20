@@ -1,5 +1,5 @@
 package com.example.coffeshop
-import com.example.coffeshop.Adaptador.productoAdaptador
+import com.example.coffeshop.Adaptador.ProductoAdapter
 
 import androidx.activity.enableEdgeToEdge
 
@@ -13,19 +13,20 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeshop.Presentador.InicioContracto
+import com.example.coffeshop.Presentador.InicioPresentador
 
 class Inicio : AppCompatActivity(), InicioContracto.View {
 
     private lateinit var presenter: InicioContracto.Presenter
-    private lateinit var adapterDestacados: productoAdaptador
-    private lateinit var adapterMenu: productoAdaptador
+    private lateinit var adapterDestacados: ProductoAdapter
+    private lateinit var adapterMenu: ProductoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inicio)
 
         // 1. Inicializar Presentador
-        presenter = InicioPresenter(this)
+        presenter = InicioPresentador(this)
 
         // 2. Configurar RecyclerViews
         val rvDestacados = findViewById<RecyclerView>(R.id.rvDestacados)
