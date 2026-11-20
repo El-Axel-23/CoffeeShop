@@ -3,11 +3,12 @@ package com.example.coffeshop.Presentador
 import com.example.coffeshop.Modelo.Cafeteria
 import com.example.coffeshop.Modelo.RespuestaApi
 import com.example.coffeshop.Modelo.RetrofitClient
+import com.example.coffeshop.Vista.UbicacionActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UbicacionPresenter(private val view: UbicacionView) {
+class UbicacionPresenter(private val view: UbicacionActivity) {
 
     fun cargarCafeteria() {
         view.mostrarCargando()
@@ -43,7 +44,9 @@ class UbicacionPresenter(private val view: UbicacionView) {
         }
     }
 
-    fun armarHorario(c: Cafeteria): String {
-        return c.dias_atencion + ": " + c.hora_apertura.take(5) + " a " + c.hora_cierre.take(5)
+    companion object {
+        fun armarHorario(c: Cafeteria): String {
+            return c.dias_atencion + ": " + c.hora_apertura.take(5) + " a " + c.hora_cierre.take(5)
+        }
     }
 }

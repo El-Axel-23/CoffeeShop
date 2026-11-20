@@ -3,11 +3,12 @@ package com.example.coffeshop.Presentador
 import com.example.coffeshop.Modelo.PreguntaFrecuente
 import com.example.coffeshop.Modelo.RespuestaApi
 import com.example.coffeshop.Modelo.RetrofitClient
+import com.example.coffeshop.Vista.AyudaActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AyudaPresenter(private val view: AyudaView) {
+class AyudaPresenter(private val view: AyudaActivity) {
 
     fun cargarPreguntas() {
         view.mostrarCargando()

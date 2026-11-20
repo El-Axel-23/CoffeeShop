@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeshop.Adaptador.PreguntaAdapter
 import com.example.coffeshop.Modelo.PreguntaFrecuente
 import com.example.coffeshop.Presentador.AyudaPresenter
-import com.example.coffeshop.Presentador.AyudaView
 import com.example.coffeshop.R
 
-class AyudaActivity : AppCompatActivity(), AyudaView {
+class AyudaActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var tvError: TextView
@@ -36,22 +35,22 @@ class AyudaActivity : AppCompatActivity(), AyudaView {
         presenter.cargarPreguntas()
     }
 
-    override fun mostrarCargando() {
+    fun mostrarCargando() {
         progressBar.visibility = View.VISIBLE
         tvError.visibility = View.GONE
         rvPreguntas.visibility = View.GONE
     }
 
-    override fun ocultarCargando() {
+    fun ocultarCargando() {
         progressBar.visibility = View.GONE
     }
 
-    override fun mostrarPreguntas(lista: List<PreguntaFrecuente>) {
+    fun mostrarPreguntas(lista: List<PreguntaFrecuente>) {
         rvPreguntas.visibility = View.VISIBLE
         rvPreguntas.adapter = PreguntaAdapter(lista)
     }
 
-    override fun mostrarError(mensaje: String) {
+    fun mostrarError(mensaje: String) {
         tvError.text = mensaje
         tvError.visibility = View.VISIBLE
         rvPreguntas.visibility = View.GONE

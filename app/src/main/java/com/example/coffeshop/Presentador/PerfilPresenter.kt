@@ -3,11 +3,12 @@ package com.example.coffeshop.Presentador
 import com.example.coffeshop.Modelo.RespuestaApi
 import com.example.coffeshop.Modelo.RetrofitClient
 import com.example.coffeshop.Modelo.Usuario
+import com.example.coffeshop.Vista.PerfilActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PerfilPresenter(private val view: PerfilView) {
+class PerfilPresenter(private val view: PerfilActivity) {
 
     fun cargarPerfil() {
         view.mostrarCargando()
@@ -42,11 +43,13 @@ class PerfilPresenter(private val view: PerfilView) {
         }
     }
 
-    fun obtenerIniciales(nombre: String): String {
-        val partes = nombre.trim().split(" ").filter { it.isNotEmpty() }
-        if (partes.size >= 2) {
-            return (partes[0].take(1) + partes[partes.size - 1].take(1)).uppercase()
+    companion object {
+        fun obtenerIniciales(nombre: String): String {
+            val partes = nombre.trim().split(" ").filter { it.isNotEmpty() }
+            if (partes.size >= 2) {
+                return (partes[0].take(1) + partes[partes.size - 1].take(1)).uppercase()
+            }
+            return nombre.take(2).uppercase()
         }
-        return nombre.take(2).uppercase()
     }
 }

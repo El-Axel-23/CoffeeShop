@@ -55,6 +55,7 @@
                 android:textColor="#B00020"
                 android:visibility="gone" />
 
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -63,6 +64,7 @@
                 android:src="@drawable/mapa_cafeteria" />
 
             <TextView
+                android:id="@+id/tvNombreCafeteria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -72,6 +74,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -91,6 +94,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvHorario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"

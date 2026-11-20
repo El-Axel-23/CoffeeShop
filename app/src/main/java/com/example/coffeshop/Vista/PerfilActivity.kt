@@ -9,10 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coffeshop.Modelo.Usuario
 import com.example.coffeshop.Presentador.PerfilPresenter
-import com.example.coffeshop.Presentador.PerfilView
 import com.example.coffeshop.R
 
-class PerfilActivity : AppCompatActivity(), PerfilView {
+class PerfilActivity : AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var tvError: TextView
@@ -45,25 +44,22 @@ class PerfilActivity : AppCompatActivity(), PerfilView {
         presenter.cargarPerfil()
     }
 
-    // Estado: Carga
-    override fun mostrarCargando() {
+    fun mostrarCargando() {
         progressBar.visibility = View.VISIBLE
         tvError.visibility = View.GONE
     }
 
-    override fun ocultarCargando() {
+    fun ocultarCargando() {
         progressBar.visibility = View.GONE
     }
 
-    // Estado: Éxito
-    override fun mostrarPerfil(usuario: Usuario, iniciales: String) {
+    fun mostrarPerfil(usuario: Usuario, iniciales: String) {
         tvIniciales.text = iniciales
         tvNombre.text = usuario.nombre_completo
         tvCorreo.text = usuario.correo
     }
 
-    // Estado: Error
-    override fun mostrarError(mensaje: String) {
+    fun mostrarError(mensaje: String) {
         tvError.text = mensaje
         tvError.visibility = View.VISIBLE
     }
