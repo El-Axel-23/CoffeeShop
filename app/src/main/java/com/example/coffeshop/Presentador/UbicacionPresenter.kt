@@ -2,7 +2,7 @@ package com.example.coffeshop.Presentador
 
 import com.example.coffeshop.Modelo.Cafeteria
 import com.example.coffeshop.Modelo.RespuestaApi
-import com.example.coffeshop.Modelo.RetrofitClient
+import com.example.coffeshop.Redes.RetrofitClient
 import com.example.coffeshop.Vista.UbicacionActivity
 import retrofit2.Call
 import retrofit2.Callback

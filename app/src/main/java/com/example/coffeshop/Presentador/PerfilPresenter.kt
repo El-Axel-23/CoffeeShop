@@ -1,7 +1,7 @@
 package com.example.coffeshop.Presentador
 
 import com.example.coffeshop.Modelo.RespuestaApi
-import com.example.coffeshop.Modelo.RetrofitClient
+import com.example.coffeshop.Redes.RetrofitClient
 import com.example.coffeshop.Modelo.Usuario
 import com.example.coffeshop.Vista.PerfilActivity
 import retrofit2.Call
