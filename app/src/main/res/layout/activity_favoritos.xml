@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF9F2">
+
+    <!-- BARRA SUPERIOR -->
+    <LinearLayout
+        android:id="@+id/barraSuperior"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="14dp"
+        android:paddingEnd="18dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- REGRESAR -->
+        <TextView
+            android:id="@+id/btnRegresarFavoritos"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="←"
+            android:textSize="27sp"
+            android:textColor="#422018"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Regresar" />
+
+        <!-- TITULO -->
+        <TextView
+            android:id="@+id/txtTituloFavoritos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="Mis favoritos"
+            android:textColor="#422018"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <FrameLayout
+        android:id="@+id/contenedorFavoritos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/barraSuperior"
+        app:layout_constraintBottom_toTopOf="@id/barraNavegacion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- LISTA DE FAVORITOS -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFavoritos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="14dp"
+            android:clipToPadding="false"
+            android:visibility="gone" />
+
+        <!-- PANTALLA SIN FAVORITOS -->
+        <LinearLayout
+            android:id="@+id/layoutSinFavoritos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:translationY="-20dp">
+
+            <!-- CIRCULO DEL CORAZON -->
+            <FrameLayout
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:background="@drawable/bg_circulo_favoritos">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_favoritos"
+                    android:contentDescription="Corazón de favoritos" />
+
+            </FrameLayout>
+
+            <!-- MENSAJE PRINCIPAL -->
+            <TextView
+                android:id="@+id/txtSinFavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:gravity="center"
+                android:text="Aún no tienes favoritos"
+                android:textColor="#422018"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- DESCRIPCION -->
+            <TextView
+                android:id="@+id/txtDescripcionFavoritos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:text="Toca el corazón en tus bebidas preferidas para guardarlas aquí"
+                android:textColor="#58382E"
+                android:textSize="14sp" />
+
+            <!-- VER MENU -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVerMenu"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/bg_boton_favoritos"
+                android:backgroundTint="@null"
+                app:backgroundTint="@null"
+                android:text="VER MENÚ"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- BARRA INFERIOR: SOLO DISEÑO -->
+    <LinearLayout
+        android:id="@+id/barraNavegacion"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#F5E5D5"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- INICIO -->
+        <LinearLayout
+            android:id="@+id/navInicio"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_nav_inicio"
+                android:contentDescription="Inicio" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textSize="12sp"
+                android:textColor="#422018" />
+
+        </LinearLayout>
+
+        <!-- MENU -->
+        <LinearLayout
+            android:id="@+id/navMenu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_nav_menu"
+                android:contentDescription="Menú" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menú"
+                android:textSize="12sp"
+                android:textColor="#422018" />
+
+        </LinearLayout>
+
+        <!-- CARRITO: SIN CONTADOR -->
+        <LinearLayout
+            android:id="@+id/navCarrito"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_nav_carrito"
+                android:contentDescription="Carrito" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carrito"
+                android:textSize="12sp"
+                android:textColor="#422018" />
+
+        </LinearLayout>
+
+        <!-- FAVORITOS SELECCIONADO -->
+        <LinearLayout
+            android:id="@+id/navFavoritos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <FrameLayout
+                android:layout_width="54dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_nav_activo">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_nav_favoritos"
+                    android:contentDescription="Favoritos" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favoritos"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#422018" />
+
+        </LinearLayout>
+
+        <!-- PERFIL -->
+        <LinearLayout
+            android:id="@+id/navPerfil"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_nav_perfil"
+                android:contentDescription="Perfil" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textSize="12sp"
+                android:textColor="#422018" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

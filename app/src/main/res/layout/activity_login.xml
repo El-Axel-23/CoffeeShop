@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDECDC"
+    tools:context=".Vista.login">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintWidth_max="384dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="28dp"
+            android:paddingBottom="16dp">
+
+            <!-- LOGO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:drawableStart="@drawable/ic_coffee"
+                android:drawablePadding="10dp"
+                android:text="@string/nombre_coffee"
+                android:textColor="#422018"
+                android:textSize="15sp"/>
+
+            <!-- BIENVENIDA -->
+            <TextView
+                android:id="@+id/txtBienvenida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:text="@string/bienvenida"
+                android:textColor="#422018"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/txtSubtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="@string/subtitulo_login"
+                android:textColor="#422018"
+                android:textSize="15sp"/>
+
+            <!-- CORREO ELECTRONICO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_campo"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/txtCorreo"
+                    android:text="@string/correo"
+                    android:textColor="#422018"
+                    android:textSize="12sp"/>
+
+                <EditText
+                    android:id="@+id/txtCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    android:hint="@string/hint_correo"
+                    android:inputType="textEmailAddress"
+                    android:autofillHints="emailAddress"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:padding="0dp"
+                    android:textColor="#422018"
+                    android:textColorHint="#68483A"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <!-- CONTRASEÑA -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_campo"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp">
+
+                <TextView
+                    android:id="@+id/lblContrasena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:labelFor="@id/txtContrasena"
+                    android:text="@string/contrasena"
+                    android:textColor="#422018"
+                    android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <EditText
+                    android:id="@+id/txtContrasena"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:background="@null"
+                    android:hint="@string/hint_contrasena"
+                    android:inputType="textPassword"
+                    android:autofillHints="password"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:padding="0dp"
+                    android:textColor="#422018"
+                    android:textColorHint="#68483A"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnVerContrasena"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <!-- OJO MOSTRAR CONTRASEÑA -->
+                <ImageButton
+                    android:id="@+id/btnVerContrasena"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_ojo_cerrado"
+                    android:padding="12dp"
+                    android:contentDescription="@string/mostrar_contrasena"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- RECUPERAR CONTRASEÑA -->
+            <TextView
+                android:id="@+id/txtOlvidasteContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical|end"
+                android:text="@string/recuperar"
+                android:textColor="#422018"
+                android:textSize="14sp"
+
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- INICIAR SESION -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnIniciarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_boton"
+                android:backgroundTint="#422018"
+                app:backgroundTint="#422018"
+                android:text="@string/iniciar_sesion"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:elevation="0dp"/>
+
+            <!-- SEPARADOR -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#E8CBAE"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/separador"
+                    android:textColor="#422018"
+                    android:textSize="14sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#E8CBAE"/>
+
+            </LinearLayout>
+
+            <!-- GOOGLE -->
+            <FrameLayout
+                android:id="@+id/btnGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="17dp"
+                android:background="@drawable/bg_social"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/google">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="22dp"
+                    android:text="@string/letra_google"
+                    android:textColor="#422018"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/google"
+                    android:textColor="#422018"
+                    android:textSize="14sp"/>
+
+            </FrameLayout>
+
+            <!-- APPLE -->
+            <FrameLayout
+                android:id="@+id/btnApple"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_social"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/apple">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:layout_marginStart="22dp"
+                    android:src="@drawable/ic_apple"
+                    android:contentDescription="@null"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/apple"
+                    android:textColor="#422018"
+                    android:textSize="14sp"/>
+
+            </FrameLayout>
+
+            <!-- REGISTRO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sin_cuenta"
+                    android:textColor="#422018"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/txtRegistrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="@string/registrate"
+                    android:textColor="#422018"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+
+                    android:clickable="true"
+                    android:focusable="true"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

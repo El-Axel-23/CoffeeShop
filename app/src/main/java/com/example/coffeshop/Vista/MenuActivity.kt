@@ -11,6 +11,7 @@ import com.example.coffeshop.Modelo.dataCategorias
 import com.example.coffeshop.Modelo.dataProductos
 import com.example.coffeshop.Presentador.VistaMenu
 import com.example.coffeshop.Presentador.clsMenuPresentador
+import com.example.coffeshop.databinding.ActivityMenuBinding
 import kotlin.collections.map
 
 class MenuActivity : AppCompatActivity(), VistaMenu {

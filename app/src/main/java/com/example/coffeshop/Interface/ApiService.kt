@@ -7,6 +7,20 @@ import com.example.coffeshop.Modelo.PreguntaFrecuente
 import com.example.coffeshop.Modelo.RespuestaApi
 import com.example.coffeshop.Modelo.Usuario
 import com.example.coffeshop.Modelo.ApiResponse
+import com.example.coffeshop.Modelo.DatosCrearCuenta
+import com.example.coffeshop.Modelo.DatosFavoritos
+import com.example.coffeshop.Modelo.DatosLogin
+import com.example.coffeshop.Modelo.DatosRecuperarContrasena
+import com.example.coffeshop.Modelo.DetallePedido
+import com.example.coffeshop.Modelo.PedidoRegistrado
+import com.example.coffeshop.Modelo.RegistrarPedidoRequest
+import com.example.coffeshop.Modelo.RespuestaAutenticacion
+import com.example.coffeshop.Modelo.RespuestaFavoritos
+import com.example.coffeshop.Modelo.RespuestaRecuperacion
+import com.example.coffeshop.Modelo.dataCategorias
+import com.example.coffeshop.Modelo.dataOpciones
+import com.example.coffeshop.Modelo.dataPedidos
+import com.example.coffeshop.Modelo.dataProductos
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -61,5 +75,31 @@ interface ApiService {
         @Query("id_pedido") idPedido: Int,
         @Query("id_usuario") idUsuario: Int
     ): Response<ApiResponse<DetallePedido>>
+
+    //LOGIN
+
+    @POST("iniciar_sesion.php")
+    fun iniciarSesion(
+        @Body datos: DatosLogin
+    ): Call<RespuestaAutenticacion>
+
+    @POST("crear_cuenta.php")
+    fun crearCuenta(
+        @Body datos: DatosCrearCuenta
+    ): Call<RespuestaAutenticacion>
+
+
+    @POST("recuperar_contrasena.php")
+    fun recuperarContrasena(
+        @Body datos: DatosRecuperarContrasena
+    ): Call<RespuestaRecuperacion>
+
+    // API DE FAVORITOS
+    @POST("favoritos.php")
+    fun gestionarFavoritos(
+        @Body datos: DatosFavoritos
+    ): Call<RespuestaFavoritos>
+
+
 
 }
