@@ -1,3 +1,101 @@
 <resources>
     <string name="app_name">CoffeShop</string>
+    <!-- NOMBRE DE LA APLICACION -->
+
+    <string name="nombre_coffee">COFFEE SHOP</string>
+    <string name="logo_coffee">Logo Coffee Shop</string>
+
+    <!-- BIENVENIDA -->
+    <string name="bienvenida">Bienvenido de nuevo</string>
+    <string name="subtitulo_login">Inicia sesión para pedir tu café favorito</string>
+
+    <!-- CORREO -->
+    <string name="correo">Correo electrónico</string>
+    <string name="hint_correo">Escribe tu correo electrónico</string>
+
+    <!-- CONTRASEÑA -->
+    <string name="contrasena">Contraseña</string>
+    <string name="hint_contrasena">••••••••</string>
+
+    <string name="mostrar_contrasena">Mostrar contraseña</string>
+    <string name="ocultar_contrasena">Ocultar contraseña</string>
+
+
+    <!-- RECUPERAR CONTRASEÑA -->
+    <string name="recuperar">¿Olvidaste tu contraseña?</string>
+
+    <!-- INICIAR SESION -->
+    <string name="iniciar_sesion">INICIAR SESIÓN</string>
+
+    <!-- SEPARADOR -->
+    <string name="separador">o</string>
+
+    <!-- GOOGLE -->
+    <string name="google">Continuar con Google</string>
+    <string name="letra_google">G</string>
+
+    <!-- APPLE -->
+    <string name="apple">Continuar con Apple</string>
+    <string name="logo_apple">Logo Apple</string>
+
+    <!-- REGISTRARSE -->
+    <string name="sin_cuenta">¿No tienes cuenta?</string>
+
+    <string name="registrate">Regístrate</string>
+
+
+    <!-- PANTALLA CREAR CUENTA -->
+    <string name="reg_titulo">Crea tu cuenta</string>
+    <string name="reg_volver">Regresar</string>
+    <string name="reg_subtitulo">Regístrate para pedir más rápido</string>
+
+    <!-- NOMBRE -->
+    <string name="reg_nombre">Nombre completo</string>
+    <string name="reg_hint_nombre">Escribe tu nombre completo</string>
+
+    <!-- CONTRASEÑAS -->
+
+    <string name="reg_minimo">Mínimo 15 caracteres</string>
+    <string name="reg_confirmar">Confirmar contraseña</string>
+    <string name="reg_mostrar_confirmar">Mostrar contraseña de confirmación</string>
+
+    <!-- TERMINOS Y CONDICIONES -->
+    <string name="reg_aceptar_terminos">Aceptar términos y condiciones</string>
+    <string name="reg_terminos">Acepto los <u>Términos y condiciones</u> y el <u>Aviso de privacidad</u></string>
+
+    <!-- CREAR CUENTA -->
+    <string name="reg_crear_cuenta">CREAR CUENTA</string>
+
+    <!-- REGISTRO SOCIAL -->
+    <string name="reg_google">Registrarse con Google</string>
+    <string name="reg_apple">Registrarse con Apple</string>
+
+    <!-- INICIAR SESION -->
+    <string name="reg_ya_tienes">¿Ya tienes cuenta?</string>
+    <string name="reg_inicia_sesion">Inicia sesión</string>
+
+
+    <!-- RECUPERAR CONTRASEÑA -->
+    <string name="rec_titulo">¿Olvidaste tu contraseña?</string>
+
+    <string name="rec_descripcion">No te preocupes. Ingresa tu correo y te enviaremos un enlace para crear una nueva contraseña.</string>
+
+    <string name="rec_icono_candado">Recuperar contraseña</string>
+    <string name="rec_enviar_enlace">ENVIAR ENLACE</string>
+    <string name="rec_volver_login">Volver a iniciar sesión</string>
+
+    <!-- VALIDACION -->
+    <string name="rec_error_correo">Ingresa un correo válido</string>
+
+    <!-- CORREO ENVIADO -->
+    <string name="rec_correo_enviado">Revisa tu correo</string>
+
+    <string name="rec_descripcion_enviado">Enviamos un enlace de recuperación a tu correo. Si no lo ves, revisa tu carpeta de spam.</string>
+
+    <string name="rec_icono_correo">Correo enviado</string>
+    <string name="rec_boton_volver">VOLVER A INICIAR SESIÓN</string>
+    <string name="rec_no_llego">¿No te llegó?</string>
+    <string name="rec_reenviar">Reenviar correo</string>
+
+
 </resources>

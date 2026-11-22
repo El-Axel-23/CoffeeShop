@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coffeshop.Modelo.dataPedidos
+import com.example.coffeshop.databinding.ItemPedidoBinding
 import java.util.Locale
 
 class PedidosAdaptador (private val lista: List<dataPedidos>):
