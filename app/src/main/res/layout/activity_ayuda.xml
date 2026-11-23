@@ -8,7 +8,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +27,8 @@
                     android:id="@+id/btnAtras"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:src="@drawable/ic_atras" />
+                    android:src="@drawable/ic_atras"
+                    android:contentDescription="Regresar" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -72,7 +74,7 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="¿Necesitas ayuda?"
                     android:textColor="@color/cafe"
@@ -80,22 +82,24 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:drawableStart="@drawable/ic_telefono"
                     android:drawablePadding="12dp"
                     android:text="1234567890"
-                    android:textColor="@color/cafe" />
+                    android:textColor="@color/cafe"
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:drawableStart="@drawable/ic_correo"
                     android:drawablePadding="12dp"
                     android:text="cafeteria@gmail.com"
-                    android:textColor="@color/cafe" />
+                    android:textColor="@color/cafe"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
