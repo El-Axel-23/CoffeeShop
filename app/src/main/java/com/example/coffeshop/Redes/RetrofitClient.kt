@@ -1,4 +1,4 @@
-package com.example.coffeshop.Modelo
+package com.example.coffeshop.Redes
 
 import com.example.coffeshop.Interface.ApiService
 import retrofit2.Retrofit
