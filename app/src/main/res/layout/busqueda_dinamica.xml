@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAF8F6"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Barra Superior -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Regresar"
+            android:src="@drawable/ic_back"
+            app:tint="#2C221E" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_box"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:backgroundTint="@color/tarjeta">
+
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="Buscar"
+                android:src="@drawable/ic_search"
+                app:tint="#2C221E" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Buscar..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="Cap"
+                android:textColor="#2C221E"
+                android:textColorHint="#8A817C"
+                android:textSize="15sp" />
+
+            <!-- Si aún no creas ic_close.xml, quita android:src temporalmente para que no marque error -->
+            <ImageButton
+                android:id="@+id/btnClear"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Limpiar"
+                android:src="@drawable/ic_close"
+                app:tint="#2C221E" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Búsquedas recientes -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Búsquedas recientes"
+        android:textColor="#2C221E"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <!-- Elemento 1: Leche -->
+    <TextView
+        android:id="@+id/tvRecent1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:drawablePadding="12dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingVertical="6dp"
+        android:text="Leche"
+        android:textColor="#3E3632"
+        android:textSize="15sp"
+        app:drawableStartCompat="@drawable/ic_reloj"
+        app:drawableTint="#5A524E" />
+
+    <!-- Elemento 2: Matcha -->
+    <TextView
+        android:id="@+id/tvRecent2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:drawablePadding="12dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingVertical="6dp"
+        android:text="Matcha"
+        android:textColor="#3E3632"
+        android:textSize="15sp"
+        app:drawableStartCompat="@drawable/ic_reloj"
+        app:drawableTint="#5A524E" />
+
+    <!-- Elemento 3: Chai -->
+    <TextView
+        android:id="@+id/tvRecent3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:drawablePadding="12dp"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:paddingVertical="6dp"
+        android:text="Chai"
+        android:textColor="#3E3632"
+        android:textSize="15sp"
+        app:drawableStartCompat="@drawable/ic_reloj"
+        app:drawableTint="#5A524E" />
+
+    <!-- Populares -->
+
+    <!-- Fila horizontal de píldoras populares -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Populares"
+        android:textColor="#2C221E"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <!-- Chip 1: Activo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_chip_inactive"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Todos"
+            android:textColor="#555555"
+            android:textStyle="bold" />
+
+        <!-- Chip 2 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_chip_inactive"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Cafés calientes"
+            android:textColor="#555555" />
+
+        <!-- Chip 3 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_chip_inactive"
+            android:gravity="center"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Fríos"
+            android:textColor="#555555" />
+
+        <!-- Chip 4 -->
+    </LinearLayout>
+
+</LinearLayout>
