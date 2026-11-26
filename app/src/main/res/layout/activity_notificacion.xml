@@ -62,124 +62,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Inicio -->
-        <LinearLayout
-            android:id="@+id/navInicio"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_home" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inicio"
-                android:textColor="#888888"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <!-- Menú -->
-        <LinearLayout
-            android:id="@+id/navMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_coffee_cup" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Menú"
-                android:textColor="#888888"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <!-- Carrito con Badge -->
-        <FrameLayout
-            android:id="@+id/navCarrito"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_cart" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Carrito"
-                    android:textColor="#888888"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvBadgeCarrito"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/bg_badge_carrito"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </FrameLayout>
-
-        <!-- Favoritos -->
-        <LinearLayout
-            android:id="@+id/navFavoritos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_favorite" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Favoritos"
-                android:textColor="#888888"
-                android:textSize="11sp" />
-        </LinearLayout>
-
-        <!-- Perfil -->
-        <LinearLayout
-            android:id="@+id/navPerfil"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_profile" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perfil"
-                android:textColor="#888888"
-                android:textSize="11sp" />
-        </LinearLayout>
     </LinearLayout>
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
