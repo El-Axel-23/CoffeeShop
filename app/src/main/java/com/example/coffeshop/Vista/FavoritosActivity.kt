@@ -11,13 +11,9 @@ import android.widget.Toast
 
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.OnApplyWindowInsetsListener
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-import com.example.coffeshop.Inicio
 import com.example.coffeshop.R
 import com.example.coffeshop.Modelo.ProductoFavorito
 import com.example.coffeshop.Presentador.FavoritosPresentador

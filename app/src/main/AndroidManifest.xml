@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CoffeShop"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Inicio"
+            android:name=".Vista.Inicio"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -53,7 +53,7 @@
             android:name=".Vista.AyudaActivity"
             android:exported="false" />
         <activity
-            android:name=".notificacion"
+            android:name=".Vista.notificacion"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
