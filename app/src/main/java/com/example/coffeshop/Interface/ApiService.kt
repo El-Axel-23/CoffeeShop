@@ -1,4 +1,3 @@
-
 package com.example.coffeshop.Interface
 
 import com.example.coffeshop.Modelo.Cafeteria
@@ -27,6 +26,9 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
+
+import com.example.coffeshop.Modelo.Producto
+import com.example.coffeshop.Modelo.RespuestaInicio
 
 interface ApiService {
 
@@ -100,6 +102,19 @@ interface ApiService {
         @Body datos: DatosFavoritos
     ): Call<RespuestaFavoritos>
 
+    // INICIO PRODUCTOS
 
+    @GET(value = "productos.php")
+    fun obtenerInicio(
+        @Query("accion") accion: String = "inicio",
+        @Query("id_usuario") idUsuario: Int = 1
+    ): Call<RespuestaInicio>
+
+    @GET(value = "productos.php")
+    fun obtenerProductosPorCategoria(
+        @Query("accion") accion: String = "categoria",
+        @Query("id_categoria") idCategoria: Int,
+        @Query("id_usuario") idUsuario: Int = 1
+    ): Call<RespuestaApi<List<Producto>>>
 
 }

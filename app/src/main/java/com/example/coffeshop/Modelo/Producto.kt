@@ -1,12 +1,14 @@
-package com.example.coffeshop
+package com.example.coffeshop.Modelo
+
+import com.google.gson.annotations.SerializedName
 
 data class Producto(
-    val id: Int,
-    val nombre: String,
-    val descripcion: String,
-    val precio: Double,
-    val categoria: String, // "Cafés calientes", "Fríos", "Frappés"
-    val imagenResId: Int,  // Ej. R.mipmap.ic_launcher o tu foto en drawable
-    val esDestacado: Boolean = false,
-    var esFavorito: Boolean = false
+    @SerializedName("id_producto") val id: Int = 0,
+    @SerializedName("nombre") val nombre: String = "",
+    @SerializedName("descripcion") val descripcion: String = "",
+    @SerializedName("precio") val precio: Double = 0.0,
+    @SerializedName("categoria") val categoria: String = "",
+    val imagenResId: Int = android.R.drawable.ic_menu_gallery,
+    @SerializedName("es_destacado") val esDestacado: Boolean = false,
+    @SerializedName("es_favorito") var esFavorito: Boolean = false
 )
