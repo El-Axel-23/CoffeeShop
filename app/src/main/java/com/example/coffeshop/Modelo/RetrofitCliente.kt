@@ -7,7 +7,7 @@ import kotlin.getValue
 import kotlin.jvm.java
 
 object RetrofitCliente {
-    private const val BASE_URL = "https://madison.4buthh.com/coffee_shop_api/"
+    private const val BASE_URL = "http://10.0.2.2/coffee_api/"
 
     val api: ApiService by lazy {
         Retrofit.Builder()

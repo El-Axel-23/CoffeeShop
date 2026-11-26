@@ -5,11 +5,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coffeshop.Adaptador.PedidosAdaptador
-import com.example.coffeshop.Modelo.PedidoRegistrado
-import com.example.coffeshop.Modelo.dataPedidos
 import com.example.coffeshop.Presentador.VistaPedidos
 import com.example.coffeshop.Presentador.clsPedidosPresentador
-import com.example.coffeshop.databinding.ActivityPedidosBinding
 
 class PedidosActivity : AppCompatActivity(), VistaPedidos {
 
