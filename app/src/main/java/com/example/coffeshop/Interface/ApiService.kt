@@ -7,19 +7,22 @@ import com.example.coffeshop.Modelo.RespuestaApi
 import com.example.coffeshop.Modelo.Usuario
 import com.example.coffeshop.Modelo.ApiResponse
 import com.example.coffeshop.Modelo.DatosCrearCuenta
-import com.example.coffeshop.Modelo.DatosFavoritos
+
 import com.example.coffeshop.Modelo.DatosLogin
 import com.example.coffeshop.Modelo.DatosRecuperarContrasena
 import com.example.coffeshop.Modelo.DetallePedido
 import com.example.coffeshop.Modelo.PedidoRegistrado
 import com.example.coffeshop.Modelo.RegistrarPedidoRequest
 import com.example.coffeshop.Modelo.RespuestaAutenticacion
-import com.example.coffeshop.Modelo.RespuestaFavoritos
+
 import com.example.coffeshop.Modelo.RespuestaRecuperacion
 import com.example.coffeshop.Modelo.dataCategorias
 import com.example.coffeshop.Modelo.dataOpciones
 import com.example.coffeshop.Modelo.dataPedidos
+import com.example.coffeshop.Modelo.dataPeticionFavorito
 import com.example.coffeshop.Modelo.dataProductos
+import com.example.coffeshop.Modelo.dataRespuestaFavoritos
+import com.example.coffeshop.Modelo.dataRespuestaOperacionFavorito
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -78,29 +81,23 @@ interface ApiService {
         @Query("id_usuario") idUsuario: Int
     ): Response<ApiResponse<DetallePedido>>
 
-    //LOGIN
+    // LOGIN
 
-    @POST("iniciar_sesion.php")
+    @POST("Login/iniciar_sesion.php")
     fun iniciarSesion(
         @Body datos: DatosLogin
     ): Call<RespuestaAutenticacion>
 
-    @POST("crear_cuenta.php")
+    @POST("Login/crear_cuenta.php")
     fun crearCuenta(
         @Body datos: DatosCrearCuenta
     ): Call<RespuestaAutenticacion>
 
-
-    @POST("recuperar_contrasena.php")
+    @POST("Login/recuperar_contrasena.php")
     fun recuperarContrasena(
         @Body datos: DatosRecuperarContrasena
     ): Call<RespuestaRecuperacion>
 
-    // API DE FAVORITOS
-    @POST("favoritos.php")
-    fun gestionarFavoritos(
-        @Body datos: DatosFavoritos
-    ): Call<RespuestaFavoritos>
 
     // INICIO PRODUCTOS
 
@@ -116,5 +113,26 @@ interface ApiService {
         @Query("id_categoria") idCategoria: Int,
         @Query("id_usuario") idUsuario: Int = 1
     ): Call<RespuestaApi<List<Producto>>>
+
+
+    //apis de favoritos
+
+    // Obtener favoritos por id_usuario
+    @GET("favoritos/obtener_favoritos.php")
+    fun obtenerFavoritos(
+        @Query("id_usuario") id_usuario: Int
+    ): Call<dataRespuestaFavoritos>
+
+    // Agregar favorito por id_usuario e id_producto
+    @POST("favoritos/agregar_favoritos.php")
+    fun agregarFavorito(
+        @Body datos: dataPeticionFavorito
+    ): Call<dataRespuestaOperacionFavorito>
+
+    // Eliminar favorito por id_usuario e id_producto
+    @POST("favoritos/eliminar_favoritos.php")
+    fun eliminarFavorito(
+        @Body datos: dataPeticionFavorito
+    ): Call<dataRespuestaOperacionFavorito>
 
 }

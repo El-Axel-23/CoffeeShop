@@ -7,14 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDECDC"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
     tools:context=".Vista.login">
 
     <ScrollView
+        android:id="@+id/scrollLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
-        app:layout_constraintWidth_max="384dp"
+        android:overScrollMode="never"
+        app:layout_constraintWidth_max="480dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,33 +29,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:paddingTop="28dp"
-            android:paddingBottom="16dp">
+            android:gravity="top"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="24dp">
 
-            <!-- LOGO -->
-            <TextView
+            <!-- Logo -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:drawableStart="@drawable/ic_coffee"
-                android:drawablePadding="10dp"
-                android:text="@string/nombre_coffee"
-                android:textColor="#422018"
-                android:textSize="15sp"/>
+                android:orientation="horizontal">
 
-            <!-- BIENVENIDA -->
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_coffee"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/logo_coffee"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/nombre_coffee"
+                    android:textColor="#422018"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <!-- Bienvenida -->
             <TextView
                 android:id="@+id/txtBienvenida"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/bienvenida"
                 android:textColor="#422018"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
 
+            <!-- Subtítulo -->
             <TextView
                 android:id="@+id/txtSubtitulo"
                 android:layout_width="match_parent"
@@ -58,24 +78,26 @@
                 android:layout_marginTop="6dp"
                 android:text="@string/subtitulo_login"
                 android:textColor="#422018"
-                android:textSize="15sp"/>
+                android:textSize="14sp"/>
 
-            <!-- CORREO ELECTRONICO -->
+            <!-- Correo electrónico -->
             <LinearLayout
+                android:id="@+id/contenedorCorreoLogin"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
                 android:background="@drawable/bg_campo"
                 android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="12dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp">
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="2dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:labelFor="@id/txtCorreo"
+                    android:includeFontPadding="false"
                     android:text="@string/correo"
                     android:textColor="#422018"
                     android:textSize="12sp"/>
@@ -83,12 +105,15 @@
                 <EditText
                     android:id="@+id/txtCorreo"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/hint_correo"
                     android:inputType="textEmailAddress"
                     android:autofillHints="emailAddress"
                     android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/txtContrasena"
                     android:singleLine="true"
                     android:padding="0dp"
                     android:textColor="#422018"
@@ -97,32 +122,48 @@
 
             </LinearLayout>
 
-            <!-- CONTRASEÑA -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <!-- Error de correo -->
+            <TextView
+                android:id="@+id/txtErrorCorreoLogin"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Contraseña -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contenedorContrasenaLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/bg_campo"
-                android:paddingStart="16dp"
-                android:paddingEnd="8dp">
+                android:paddingStart="14dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="2dp">
 
                 <TextView
                     android:id="@+id/lblContrasena"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:labelFor="@id/txtContrasena"
+                    android:includeFontPadding="false"
                     android:text="@string/contrasena"
                     android:textColor="#422018"
                     android:textSize="12sp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnVerContrasena"/>
 
                 <EditText
                     android:id="@+id/txtContrasena"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/hint_contrasena"
                     android:inputType="textPassword"
                     android:autofillHints="password"
@@ -134,15 +175,17 @@
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/btnVerContrasena"
+                    app:layout_constraintTop_toBottomOf="@id/lblContrasena"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <!-- OJO MOSTRAR CONTRASEÑA -->
+                <!-- Mostrar contraseña -->
                 <ImageButton
                     android:id="@+id/btnVerContrasena"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_ojo_cerrado"
+                    android:scaleType="fitCenter"
                     android:padding="12dp"
                     android:contentDescription="@string/mostrar_contrasena"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -151,41 +194,54 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- RECUPERAR CONTRASEÑA -->
+            <!-- Error de contraseña -->
+            <TextView
+                android:id="@+id/txtErrorContrasenaLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Recuperar contraseña -->
             <TextView
                 android:id="@+id/txtOlvidasteContrasena"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="2dp"
-                android:gravity="center_vertical|end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_gravity="end"
+                android:gravity="center_vertical"
                 android:text="@string/recuperar"
                 android:textColor="#422018"
-                android:textSize="14sp"
-
+                android:textSize="13sp"
                 android:clickable="true"
                 android:focusable="true"/>
 
-            <!-- INICIAR SESION -->
+            <!-- Iniciar sesión -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnIniciarSesion"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:background="@drawable/bg_boton"
                 android:backgroundTint="#422018"
                 app:backgroundTint="#422018"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:text="@string/iniciar_sesion"
-                android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:elevation="0dp"/>
+                android:textAllCaps="false"
+                android:elevation="0dp"
+                android:stateListAnimator="@null"/>
 
-            <!-- SEPARADOR -->
+            <!-- Separador -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="18dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -198,11 +254,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="14dp"
                     android:text="@string/separador"
                     android:textColor="#422018"
-                    android:textSize="14sp"/>
+                    android:textSize="13sp"/>
 
                 <View
                     android:layout_width="0dp"
@@ -212,13 +268,15 @@
 
             </LinearLayout>
 
-            <!-- GOOGLE -->
+            <!-- Google -->
             <FrameLayout
                 android:id="@+id/btnGoogle"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="17dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_social"
+                android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:contentDescription="@string/google">
@@ -227,29 +285,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="22dp"
+                    android:layout_marginStart="20dp"
                     android:text="@string/letra_google"
                     android:textColor="#422018"
                     android:textSize="22sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginEnd="52dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:text="@string/google"
                     android:textColor="#422018"
                     android:textSize="14sp"/>
 
             </FrameLayout>
 
-            <!-- APPLE -->
+            <!-- Apple -->
             <FrameLayout
                 android:id="@+id/btnApple"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_social"
+                android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:contentDescription="@string/apple">
@@ -258,47 +323,54 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="22dp"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/ic_apple"
                     android:contentDescription="@null"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginEnd="52dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:text="@string/apple"
                     android:textColor="#422018"
                     android:textSize="14sp"/>
 
             </FrameLayout>
 
-            <!-- REGISTRO -->
+            <!-- Registro -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
                     android:text="@string/sin_cuenta"
                     android:textColor="#422018"
                     android:textSize="14sp"/>
 
                 <TextView
                     android:id="@+id/txtRegistrate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:minWidth="48dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:layout_marginStart="6dp"
+                    android:gravity="start|center_vertical"
                     android:text="@string/registrate"
                     android:textColor="#422018"
                     android:textSize="14sp"
                     android:textStyle="bold"
-
                     android:clickable="true"
                     android:focusable="true"/>
 

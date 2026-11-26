@@ -1,4 +1,3 @@
-
 package com.example.coffeshop.Presentador
 
 import android.util.Patterns
@@ -19,110 +18,82 @@ class RecuperarContrasenaPresentador(private var vista: VistaRecuperarContrasena
     }
     private val modelo = RecuperarContrasenaModelo()
     private var llamadaActiva: Call<RespuestaRecuperacion>? = null
-    // SOLICITAR RECUPERACION
+    // Solicitar recuperacion
     fun solicitarRecuperacion(correo: String) {
         if (llamadaActiva != null) {
             return
         }
         val correoLimpio = correo.trim()
         vista?.limpiarErrorCorreo()
-        // VALIDAR CORREO VACIO
+        // Validar correo vacio
         if (correoLimpio.isEmpty()) {
-            vista?.mostrarErrorCorreo(
-                "Ingresa tu correo electrónico"
-            )
+            vista?.mostrarErrorCorreo("Ingresa tu correo electrónico")
             return
         }
-        // VALIDAR FORMATO DEL CORREO
-        if (!Patterns.EMAIL_ADDRESS.matcher(correoLimpio).matches()) {
-            vista?.mostrarErrorCorreo(
-                "Ingresa un correo válido"
-            )
+        // Validar correo
+        if (!Patterns.EMAIL_ADDRESS.matcher(correoLimpio).matches() || correoLimpio.toByteArray(Charsets.UTF_8).size > 120) {
+            vista?.mostrarErrorCorreo("Ingresa un correo válido")
             return
         }
-        // MOSTRAR CARGA
         vista?.mostrarCargando(true)
-
-        // LLAMAR AL MODELO
-        val llamada = modelo.solicitarRecuperacion(
-            correoLimpio
-        )
+        // Llamar al modelo
+        val llamada = modelo.solicitarRecuperacion(correoLimpio)
         llamadaActiva = llamada
-        llamada.enqueue(
-            object : Callback<RespuestaRecuperacion> {
-                override fun onResponse(
-                    call: Call<RespuestaRecuperacion>,
-                    response: Response<RespuestaRecuperacion>
-                ) {
+        llamada.enqueue(object : Callback<RespuestaRecuperacion> {
+                override fun onResponse(call: Call<RespuestaRecuperacion>, response: Response<RespuestaRecuperacion>) {
                     if (call.isCanceled) {
                         return
                     }
                     llamadaActiva = null
                     vista?.mostrarCargando(false)
-                    // VERIFICAR ESTADO HTTP
+                    // Verificar estado HTTP
                     if (!response.isSuccessful) {
-                        vista?.mostrarMensaje(
-                            obtenerMensajeError(response)
-                        )
+                        vista?.mostrarMensaje(obtenerMensajeError(response))
                         return
                     }
-                    // OBTENER RESPUESTA
                     val resultado = response.body()
                     if (resultado == null) {
-                        vista?.mostrarMensaje(
-                            "No se recibió respuesta del servidor"
-                        )
+                        vista?.mostrarMensaje("No se recibió respuesta del servidor")
                         return
                     }
-                    // VERIFICAR RESULTADO
+                    // Verificar resultado
                     if (resultado.exito) {
-                        vista?.solicitudCorrecta(
-                            resultado.mensaje
-                        )
+                        vista?.solicitudCorrecta(resultado.mensaje)
                     } else {
-                        vista?.mostrarMensaje(
-                            resultado.mensaje
-                        )
+                        vista?.mostrarMensaje(resultado.mensaje)
                     }
                 }
-                override fun onFailure(
-                    call: Call<RespuestaRecuperacion>,
-                    t: Throwable
-                ) {
+                override fun onFailure(call: Call<RespuestaRecuperacion>, t: Throwable) {
                     if (call.isCanceled) {
                         return
                     }
                     llamadaActiva = null
                     vista?.mostrarCargando(false)
-                    vista?.mostrarMensaje(
-                        "No se pudo conectar con el servidor. " +
-                                "Revisa tu conexión a internet."
-                    )
+                    vista?.mostrarMensaje("No se pudo conectar con el servidor. " + "Revisa tu conexión a internet.")
                 }
             }
         )
     }
-    private fun obtenerMensajeError(
-        response: Response<RespuestaRecuperacion>
-    ): String {
-        val mensajePredeterminado =
-            "Error del servidor (${response.code()})"
+    // Obtener mensaje de error del PHP
+    private fun obtenerMensajeError(response: Response<RespuestaRecuperacion>): String {
+        val mensajePredeterminado = "Error del servidor (${response.code()})"
         return try {
             val contenido = response.errorBody()?.string()
             if (contenido.isNullOrBlank()) {
                 mensajePredeterminado
             } else {
-                JSONObject(contenido).optString(
-                    "mensaje",
+                val mensaje = JSONObject(contenido).optString("mensaje", mensajePredeterminado)
+                if (mensaje.isBlank()) {
                     mensajePredeterminado
-                ).ifBlank {
-                    mensajePredeterminado
+                } else {
+                    mensaje
                 }
             }
         } catch (e: Exception) {
             mensajePredeterminado
         }
     }
+    // Liberar la vista
     fun liberar() {
         vista = null
         llamadaActiva?.cancel()
