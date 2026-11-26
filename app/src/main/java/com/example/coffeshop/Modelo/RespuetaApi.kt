@@ -1,7 +1,7 @@
 package com.example.coffeshop.Modelo
 
-data class RespuestaApi<T>(
-    val status: String,
+data class ApiResponse<T>(
+    val success: Boolean,
     val message: String,
     val data: T?
 )
