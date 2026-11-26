@@ -7,14 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDECDC"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:descendantFocusability="beforeDescendants"
     tools:context=".Vista.crear_cuenta">
 
     <ScrollView
+        android:id="@+id/scrollRegistro"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
-        app:layout_constraintWidth_max="384dp"
+        android:overScrollMode="never"
+        app:layout_constraintWidth_max="480dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,34 +29,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="16dp">
+            android:gravity="top"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
 
-            <!-- ENCABEZADO -->
+            <!-- Encabezado -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
+                android:layout_height="wrap_content"
+                android:minHeight="48dp">
 
-                <!-- REGRESAR -->
                 <ImageButton
                     android:id="@+id/btnRegresar"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_flecha_atras"
+                    android:scaleType="fitCenter"
                     android:padding="12dp"
                     android:contentDescription="@string/reg_volver"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <!-- TITULO -->
                 <TextView
                     android:id="@+id/txtTituloRegistro"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginEnd="52dp"
+                    android:gravity="center"
                     android:text="@string/reg_titulo"
                     android:textColor="#422018"
                     android:textSize="21sp"
@@ -61,11 +70,12 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <!-- LOGO -->
                 <ImageView
                     android:layout_width="28dp"
                     android:layout_height="28dp"
+                    android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_coffee"
+                    android:scaleType="fitCenter"
                     android:contentDescription="@string/logo_coffee"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -73,30 +83,33 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- SUBTITULO -->
+            <!-- Subtítulo -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/reg_subtitulo"
                 android:textColor="#422018"
-                android:textSize="15sp"/>
+                android:textSize="14sp"/>
 
-            <!-- NOMBRE COMPLETO -->
+            <!-- Nombre completo -->
             <LinearLayout
+                android:id="@+id/contenedorNombreRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="14dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_campo"
                 android:orientation="vertical"
                 android:paddingStart="14dp"
-                android:paddingEnd="14dp">
+                android:paddingEnd="14dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="2dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:labelFor="@id/txtNombreCompleto"
+                    android:includeFontPadding="false"
                     android:text="@string/reg_nombre"
                     android:textColor="#422018"
                     android:textSize="12sp"/>
@@ -104,12 +117,15 @@
                 <EditText
                     android:id="@+id/txtNombreCompleto"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/reg_hint_nombre"
-                    android:inputType="textPersonName"
+                    android:inputType="textPersonName|textCapWords"
                     android:autofillHints="name"
                     android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/txtCorreoRegistro"
                     android:singleLine="true"
                     android:padding="0dp"
                     android:textColor="#422018"
@@ -118,21 +134,34 @@
 
             </LinearLayout>
 
-            <!-- CORREO ELECTRONICO -->
-            <LinearLayout
+            <!-- Error de nombre -->
+            <TextView
+                android:id="@+id/txtErrorNombreRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Correo electrónico -->
+            <LinearLayout
+                android:id="@+id/contenedorCorreoRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_campo"
                 android:orientation="vertical"
                 android:paddingStart="14dp"
-                android:paddingEnd="14dp">
+                android:paddingEnd="14dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="2dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:labelFor="@id/txtCorreoRegistro"
+                    android:includeFontPadding="false"
                     android:text="@string/correo"
                     android:textColor="#422018"
                     android:textSize="12sp"/>
@@ -140,12 +169,15 @@
                 <EditText
                     android:id="@+id/txtCorreoRegistro"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/hint_correo"
                     android:inputType="textEmailAddress"
                     android:autofillHints="emailAddress"
                     android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/txtContrasenaRegistro"
                     android:singleLine="true"
                     android:padding="0dp"
                     android:textColor="#422018"
@@ -154,36 +186,53 @@
 
             </LinearLayout>
 
-            <!-- CONTRASEÑA -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <!-- Error de correo -->
+            <TextView
+                android:id="@+id/txtErrorCorreoRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Contraseña -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contenedorContrasenaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_campo"
                 android:paddingStart="14dp"
-                android:paddingEnd="6dp">
+                android:paddingEnd="6dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="2dp">
 
                 <TextView
                     android:id="@+id/lblContrasenaRegistro"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:labelFor="@id/txtContrasenaRegistro"
+                    android:includeFontPadding="false"
                     android:text="@string/contrasena"
                     android:textColor="#422018"
                     android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintEnd_toStartOf="@id/btnVerContrasenaRegistro"/>
 
                 <EditText
                     android:id="@+id/txtContrasenaRegistro"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/hint_contrasena"
                     android:inputType="textPassword"
                     android:autofillHints="newPassword"
                     android:imeOptions="actionNext"
+                    android:nextFocusForward="@id/txtConfirmarContrasena"
                     android:singleLine="true"
                     android:padding="0dp"
                     android:textColor="#422018"
@@ -191,6 +240,7 @@
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/btnVerContrasenaRegistro"
+                    app:layout_constraintTop_toBottomOf="@id/lblContrasenaRegistro"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <ImageButton
@@ -199,50 +249,67 @@
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_ojo_cerrado"
+                    android:scaleType="fitCenter"
                     android:padding="12dp"
                     android:contentDescription="@string/mostrar_contrasena"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="@id/txtContrasenaRegistro"
+                    app:layout_constraintBottom_toBottomOf="@id/txtContrasenaRegistro"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- REQUISITO CONTRASEÑA -->
+            <!-- Error de contraseña -->
+            <TextView
+                android:id="@+id/txtErrorContrasenaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Mínimo de caracteres -->
             <TextView
                 android:id="@+id/txtMinimoCaracteres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/reg_minimo"
                 android:textColor="#422018"
                 android:textSize="12sp"/>
 
-            <!-- CONFIRMAR CONTRASEÑA -->
+            <!-- Confirmar contraseña -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contenedorConfirmarContrasena"
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_campo"
                 android:paddingStart="14dp"
-                android:paddingEnd="6dp">
+                android:paddingEnd="6dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="2dp">
 
                 <TextView
                     android:id="@+id/lblConfirmarContrasena"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:labelFor="@id/txtConfirmarContrasena"
+                    android:includeFontPadding="false"
                     android:text="@string/reg_confirmar"
                     android:textColor="#422018"
                     android:textSize="12sp"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintEnd_toStartOf="@id/btnVerConfirmar"/>
 
                 <EditText
                     android:id="@+id/txtConfirmarContrasena"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:hint="@string/hint_contrasena"
                     android:inputType="textPassword"
                     android:autofillHints="newPassword"
@@ -254,6 +321,7 @@
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/btnVerConfirmar"
+                    app:layout_constraintTop_toBottomOf="@id/lblConfirmarContrasena"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <ImageButton
@@ -262,22 +330,32 @@
                     android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/ic_ojo_cerrado"
+                    android:scaleType="fitCenter"
                     android:padding="12dp"
                     android:contentDescription="@string/reg_mostrar_confirmar"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="@id/txtConfirmarContrasena"
+                    app:layout_constraintBottom_toBottomOf="@id/txtConfirmarContrasena"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- TERMINOS Y CONDICIONES -->
+            <!-- Error al confirmar contraseña -->
+            <TextView
+                android:id="@+id/txtErrorConfirmarContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Términos y condiciones -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
-
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/chkTerminos"
@@ -301,27 +379,41 @@
 
             </LinearLayout>
 
-            <!-- BOTON CREAR CUENTA -->
+            <!-- Error de términos -->
+            <TextView
+                android:id="@+id/txtErrorTerminos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#B93826"
+                android:textSize="12sp"
+                android:visibility="gone"/>
+
+            <!-- Crear cuenta -->
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCrearCuenta"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_boton"
                 android:backgroundTint="#422018"
                 app:backgroundTint="#422018"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
                 android:text="@string/reg_crear_cuenta"
                 android:textAllCaps="false"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:elevation="0dp"/>
+                android:elevation="0dp"
+                android:stateListAnimator="@null"/>
 
-            <!-- SEPARADOR -->
+            <!-- Separador -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="14dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -338,7 +430,7 @@
                     android:layout_marginEnd="14dp"
                     android:text="@string/separador"
                     android:textColor="#422018"
-                    android:textSize="14sp"/>
+                    android:textSize="13sp"/>
 
                 <View
                     android:layout_width="0dp"
@@ -348,13 +440,15 @@
 
             </LinearLayout>
 
-            <!-- REGISTRO CON GOOGLE -->
+            <!-- Registro con Google -->
             <FrameLayout
                 android:id="@+id/btnRegistroGoogle"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/bg_social"
+                android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:contentDescription="@string/reg_google">
@@ -366,26 +460,33 @@
                     android:layout_marginStart="20dp"
                     android:text="@string/letra_google"
                     android:textColor="#422018"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginEnd="52dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:text="@string/reg_google"
                     android:textColor="#422018"
                     android:textSize="14sp"/>
 
             </FrameLayout>
 
-            <!-- REGISTRO CON APPLE -->
+            <!-- Registro con Apple -->
             <FrameLayout
                 android:id="@+id/btnRegistroApple"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_social"
+                android:foreground="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
                 android:contentDescription="@string/reg_apple">
@@ -394,47 +495,54 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_gravity="start|center_vertical"
-                    android:layout_marginStart="22dp"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/ic_apple"
                     android:contentDescription="@null"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginEnd="52dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center"
                     android:text="@string/reg_apple"
                     android:textColor="#422018"
                     android:textSize="14sp"/>
 
             </FrameLayout>
 
-            <!-- YA TIENES CUENTA -->
+            <!-- Ya tienes cuenta -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end|center_vertical"
                     android:text="@string/reg_ya_tienes"
                     android:textColor="#422018"
                     android:textSize="14sp"/>
 
                 <TextView
                     android:id="@+id/txtIrLogin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:minWidth="48dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="48dp"
+                    android:layout_marginStart="6dp"
+                    android:gravity="start|center_vertical"
                     android:text="@string/reg_inicia_sesion"
                     android:textColor="#422018"
                     android:textSize="14sp"
                     android:textStyle="bold"
-
                     android:clickable="true"
                     android:focusable="true"/>
 

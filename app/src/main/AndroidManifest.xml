@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission
-        android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,48 +14,81 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoffeShop"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Inicio"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- LOGIN: Pantalla principal -->
         <activity
             android:name=".Vista.login"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- Crear cuenta -->
         <activity
             android:name=".Vista.crear_cuenta"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- Recuperar contraseña -->
         <activity
             android:name=".Vista.recuperar_contrasena"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <!-- Favoritos -->
         <activity
             android:name=".Vista.FavoritosActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Ubicación -->
+        <activity
+            android:name=".Vista.UbicacionActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- MainActivity -->
         <activity
             android:name=".Vista.MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Perfil -->
         <activity
             android:name=".Vista.PerfilActivity"
             android:exported="false" />
+
+        <!-- Inicio -->
         <activity
-            android:name=".Vista.UbicacionActivity"
+            android:name=".Inicio"
             android:exported="false" />
+
+        <!-- Menú -->
+        <activity
+            android:name=".Vista.MenuActivity"
+            android:exported="false" />
+
+        <!-- Pedidos -->
+        <activity
+            android:name=".Vista.PedidosActivity"
+            android:exported="false" />
+
+        <!-- Ayuda -->
         <activity
             android:name=".Vista.AyudaActivity"
             android:exported="false" />
+
+        <!-- Notificaciones -->
         <activity
             android:name=".notificacion"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
     </application>
+
 </manifest>
