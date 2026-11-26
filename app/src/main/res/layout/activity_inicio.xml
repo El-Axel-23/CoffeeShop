@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
-    tools:context="Inicio">
+    android:background="#FAF5EF"
+    tools:context=".Inicio">
 
     <!-- BARRA SUPERIOR (Header) -->
     <ImageView
         android:id="@+id/imgAvatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_circle_avatar"
+        android:contentDescription="Avatar de usuario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,41 +24,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CE"
-        android:textColor="#5C4033"
+        android:textColor="#4A2C22"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="@id/imgAvatar"
         app:layout_constraintStart_toStartOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar" />
 
-    <ImageView
-        android:id="@+id/ivCoffeeIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="8dp"
-        android:src="@drawable/ic_coffee_cup"
-        app:layout_constraintBottom_toBottomOf="@id/tvShopTitle"
-        app:layout_constraintStart_toEndOf="@id/tvAvatarInitials"
-        app:layout_constraintTop_toTopOf="@id/tvShopTitle" />
-
     <TextView
-        android:id="@+id/tvShopTitle"
+        android:id="@+id/tvTituloMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="COFFEE SHOP"
-        android:textColor="#333333"
-        android:textSize="16sp"
+        android:drawableStart="@drawable/ic_coffee"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:text="@string/nombre_coffee"
+        android:textColor="#381C14"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
-        app:layout_constraintStart_toEndOf="@id/ivCoffeeIcon"
+        app:layout_constraintEnd_toStartOf="@id/ivNotification"
+        app:layout_constraintStart_toEndOf="@id/imgAvatar"
         app:layout_constraintTop_toTopOf="@id/imgAvatar" />
 
     <ImageView
         android:id="@+id/ivNotification"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:layout_marginEnd="16dp"
+        android:contentDescription="Notificaciones"
         android:src="@drawable/ic_notification"
         app:layout_constraintBottom_toBottomOf="@id/imgAvatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,31 +63,32 @@
     <LinearLayout
         android:id="@+id/searchBarLayout"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="44dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_search_bar"
+        android:background="@drawable/bg_buscador_inicio"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgAvatar">
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:contentDescription="Buscar"
             android:src="@drawable/ic_search" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="10dp"
             android:text="Busca tu café o postre favorito..."
-            android:textColor="#888888"
-            android:textSize="14sp" />
+            android:textColor="#8D776B"
+            android:textSize="13sp" />
     </LinearLayout>
 
     <!-- CHIPS DE CATEGORÍAS (Horizontal Scroll) -->
@@ -100,7 +96,7 @@
         android:id="@+id/horizontalScrollCategories"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,53 +109,57 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
-            <!-- Chip 1: Activo -->
             <TextView
+                android:id="@+id/chipTodos"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_chip_active"
+                android:background="@drawable/bg_chip_inicio_activo"
                 android:gravity="center"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="Todos"
-                android:textColor="#FFFFFF"
+                android:textColor="#FFFDF9"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <!-- Chip 2 -->
             <TextView
+                android:id="@+id/chipCafesCalientes"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_chip_inactive"
+                android:background="@drawable/bg_chip_inicio_inactivo"
                 android:gravity="center"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="Cafés calientes"
-                android:textColor="#555555" />
+                android:textColor="#5E4337"
+                android:textSize="12sp" />
 
-            <!-- Chip 3 -->
             <TextView
+                android:id="@+id/chipFrios"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_chip_inactive"
+                android:background="@drawable/bg_chip_inicio_inactivo"
                 android:gravity="center"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="Fríos"
-                android:textColor="#555555" />
+                android:textColor="#5E4337"
+                android:textSize="12sp" />
 
-            <!-- Chip 4 -->
             <TextView
+                android:id="@+id/chipFrappes"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@drawable/bg_chip_inactive"
+                android:layout_height="34dp"
+                android:background="@drawable/bg_chip_inicio_inactivo"
                 android:gravity="center"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="Frappés"
-                android:textColor="#555555" />
+                android:textColor="#5E4337"
+                android:textSize="12sp" />
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -167,7 +167,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -177,49 +177,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="24dp">
+            android:paddingBottom="20dp">
 
-            <!-- Título Sección Destacados -->
             <TextView
+                android:id="@+id/tvTituloDestacados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="CAFÉS DESTACADOS DE HOY (2)"
-                android:textColor="#333333"
-                android:textSize="13sp"
+                android:textColor="#381C14"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <!-- RecyclerView para los Destacados -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvDestacados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
+                android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:paddingEnd="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_producto_destacado" />
 
-            <!-- Título Menú Completo -->
             <TextView
+                android:id="@+id/tvTituloMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:text="MENÚ COMPLETO"
-                android:textColor="#333333"
-                android:textSize="13sp"
+                android:textColor="#381C14"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMenuCompleto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="4dp"
+                android:layout_marginTop="10dp"
                 android:nestedScrollingEnabled="false"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
                 tools:itemCount="4"
@@ -227,110 +229,138 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- BARRA DE NAVEGACIÓN INFERIOR (Bottom Navigation) -->
+    <!-- BARRA DE NAVEGACIÓN INFERIOR -->
     <LinearLayout
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#FFFFFF"
+        android:layout_height="62dp"
+        android:background="#F5E5D5"
         android:elevation="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Item 1: Inicio -->
+        <!-- INICIO (Activo) -->
         <LinearLayout
+            android:id="@+id/navInicio"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_home" />
+
+            <FrameLayout
+                android:layout_width="54dp"
+                android:layout_height="34dp"
+                android:background="@drawable/bg_nav_activo">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Inicio"
+                    android:src="@drawable/ic_nav_inicio" />
+            </FrameLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Inicio"
-                android:textColor="#5C4033"
-                android:textSize="11sp" />
+                android:textColor="#381C14"
+                android:textSize="11sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Item 2: Menú -->
+        <!-- MENU -->
         <LinearLayout
+            android:id="@+id/navMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_coffee_cup" />
+                android:layout_height="34dp"
+                android:contentDescription="Menú"
+                android:src="@drawable/ic_nav_menu" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Menú"
-                android:textColor="#888888"
+                android:textColor="#6E5548"
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Item 3: Carrito (con punto o badge) -->
+        <!-- CARRITO -->
         <LinearLayout
+            android:id="@+id/navCarrito"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_cart" />
+                android:layout_height="34dp"
+                android:contentDescription="Carrito"
+                android:src="@drawable/ic_nav_carrito" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Carrito"
-                android:textColor="#888888"
+                android:textColor="#6E5548"
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Item 4: Favoritos -->
+        <!-- FAVORITOS -->
         <LinearLayout
+            android:id="@+id/navFavoritos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_favorite" />
+                android:layout_height="34dp"
+                android:contentDescription="Favoritos"
+                android:src="@drawable/ic_nav_favoritos" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Favoritos"
-                android:textColor="#888888"
+                android:textColor="#6E5548"
                 android:textSize="11sp" />
         </LinearLayout>
 
-        <!-- Item 5: Perfil -->
+        <!-- PERFIL -->
         <LinearLayout
+            android:id="@+id/navPerfil"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_profile" />
+                android:layout_height="34dp"
+                android:contentDescription="Perfil"
+                android:src="@drawable/ic_nav_perfil" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perfil"
-                android:textColor="#888888"
+                android:textColor="#6E5548"
                 android:textSize="11sp" />
         </LinearLayout>
     </LinearLayout>

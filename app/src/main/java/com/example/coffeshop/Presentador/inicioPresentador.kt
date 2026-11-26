@@ -1,85 +1,63 @@
 package com.example.coffeshop.Presentador
 
-import com.example.coffeshop.Producto
-import com.example.coffeshop.R
+import com.example.coffeshop.Inicio
+import com.example.coffeshop.Interface.ApiService
+import com.example.coffeshop.Modelo.Producto
+import com.example.coffeshop.Modelo.RespuestaInicio
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class InicioPresentador(private val view: InicioContracto.View) : InicioContracto.Presenter {
+class InicioPresentador(
+    private val vista: Inicio,
+    private val apiService: ApiService
+) {
+    private var listaDestacadosCompleta: List<Producto> = emptyList()
+    private var listaMenuCompleta: List<Producto> = emptyList()
 
-    private val listaCompleta = listOf(
-        Producto(
-            id = 1,
-            nombre = "Latte Vainilla Avena",
-            descripcion = "Nuestro café de autor con leche de avena cremosa y toque de vainilla.",
-            precio = 65.0,
-            categoria = "Cafés calientes",
-            imagenResId = R.mipmap.ic_launcher,
-            esDestacado = true
-        ),
-        Producto(
-            id = 2,
-            nombre = "Mocha Chocolate",
-            descripcion = "Intenso espresso con chocolate amargo, leche vaporizada y cacao.",
-            precio = 72.0,
-            categoria = "Cafés calientes",
-            imagenResId = R.mipmap.ic_launcher,
-            esDestacado = true
-        ),
-        Producto(
-            id = 3,
-            nombre = "Cold Brew Caramelo",
-            descripcion = "Extracción en frío por 16 horas con jarabe artesanal de caramelo.",
-            precio = 68.0,
-            categoria = "Fríos",
-            imagenResId = R.mipmap.ic_launcher,
-            esDestacado = false
-        ),
-        Producto(
-            id = 4,
-            nombre = "Frappé Moka Oreo",
-            descripcion = "Mezcla helada de café espresso, crema batida y trozos de galleta.",
-            precio = 78.0,
-            categoria = "Frappés",
-            imagenResId = R.mipmap.ic_launcher,
-            esDestacado = false
-        )
-    )
+    fun cargarInicio() {
+        apiService.obtenerInicio().enqueue(object : Callback<RespuestaInicio> {
+            override fun onResponse(
+                call: Call<RespuestaInicio>,
+                response: Response<RespuestaInicio>
+            ) {
+                val cuerpo = response.body()
+                if (response.isSuccessful && cuerpo != null && cuerpo.success) {
+                    listaDestacadosCompleta = cuerpo.destacados
+                    listaMenuCompleta = cuerpo.menuCompleto
 
-    override fun cargarDatosIniciales() {
-        val destacados = listaCompleta.filter { it.esDestacado }
-        view.actualizarTituloDestacados(destacados.size)
-        view.mostrarDestacados(destacados)
-        view.mostrarMenuCompleto(listaCompleta)
-    }
-
-    override fun filtrarPorCategoria(categoria: String) {
-        val filtrados = if (categoria == "Todos") {
-            listaCompleta
-        } else {
-            listaCompleta.filter { it.categoria.equals(categoria, ignoreCase = true) }
-        }
-        view.mostrarMenuCompleto(filtrados)
-    }
-
-    override fun buscarProducto(texto: String) {
-        val query = texto.trim()
-        val resultados = if (query.isEmpty()) {
-            listaCompleta
-        } else {
-            listaCompleta.filter {
-                it.nombre.contains(query, ignoreCase = true) ||
-                        it.descripcion.contains(query, ignoreCase = true)
+                    vista.mostrarDestacados(listaDestacadosCompleta)
+                    vista.mostrarMenuCompleto(listaMenuCompleta)
+                } else {
+                    vista.mostrarMensaje(cuerpo?.error ?: "No se pudieron cargar los productos")
+                }
             }
+
+            override fun onFailure(call: Call<RespuestaInicio>, t: Throwable) {
+                vista.mostrarMensaje("Error de red: ${t.localizedMessage ?: "intenta de nuevo"}")
+            }
+        })
+    }
+
+    fun filtrarPorCategoria(categoriaSeleccionada: String) {
+        if (categoriaSeleccionada.equals("Todos", ignoreCase = true)) {
+            vista.mostrarMenuCompleto(listaMenuCompleta)
+            return
         }
-        view.mostrarMenuCompleto(resultados)
+
+        val filtrados = listaMenuCompleta.filter { producto ->
+            producto.categoria.equals(categoriaSeleccionada, ignoreCase = true)
+        }
+        vista.mostrarMenuCompleto(filtrados)
     }
 
-    override fun alAgregarAlCarrito(producto: Producto) {
-        view.mostrarMensaje("${producto.nombre} agregado al carrito")
+    fun agregarAlCarrito(producto: Producto) {
+        vista.mostrarMensaje("Agregado al carrito: ${producto.nombre}")
     }
 
-    override fun alAlternarFavorito(producto: Producto) {
+    fun alternarFavorito(producto: Producto) {
         producto.esFavorito = !producto.esFavorito
-        val estado = if (producto.esFavorito) "agregado a" else "eliminado de"
-        view.mostrarMensaje("${producto.nombre} $estado favoritos")
+        val estado = if (producto.esFavorito) "en favoritos" else "fuera de favoritos"
+        vista.mostrarMensaje("${producto.nombre} ahora está $estado")
     }
 }
