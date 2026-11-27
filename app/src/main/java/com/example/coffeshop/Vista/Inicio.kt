@@ -1,4 +1,4 @@
-package com.example.coffeshop
+package com.example.coffeshop.Vista
 
 import android.content.Intent
 import android.graphics.Color
@@ -15,6 +15,10 @@ import com.example.coffeshop.Adaptador.ProductoAdapter
 import com.example.coffeshop.Modelo.Producto
 import com.example.coffeshop.Modelo.RetrofitCliente
 import com.example.coffeshop.Presentador.InicioPresentador
+import com.example.coffeshop.R
+import com.example.coffeshop.databinding.BusquedaDinamicaBinding
+import kotlin.jvm.java
+
 
 class Inicio : AppCompatActivity() {
 
@@ -44,7 +48,8 @@ class Inicio : AppCompatActivity() {
             onFavoritoClick = { presentador.alternarFavorito(it) }
         )
 
-        rvDestacados.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvDestacados.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvDestacados.adapter = adapterDestacados
 
         rvMenuCompleto.layoutManager = GridLayoutManager(this, 2)
@@ -87,12 +92,12 @@ class Inicio : AppCompatActivity() {
     private fun configurarNavegacionYAcciones() {
         findViewById<View>(R.id.searchBarLayout).setOnClickListener {
             mostrarMensaje("Abriendo buscador")
-            // startActivity(Intent(this, BusquedaActivity::class.java))
+            startActivity(Intent(this, BusquedaDinamicaBinding::class.java))
         }
 
         findViewById<View>(R.id.ivNotification).setOnClickListener {
             mostrarMensaje("Abriendo notificaciones")
-            // startActivity(Intent(this, NotificacionActivity::class.java))
+            startActivity(Intent(this, NotificacionActivity::class.java))
         }
 
         findViewById<View>(R.id.navInicio).setOnClickListener {
@@ -101,22 +106,22 @@ class Inicio : AppCompatActivity() {
 
         findViewById<View>(R.id.navMenu).setOnClickListener {
             mostrarMensaje("Ir a Menú")
-            // startActivity(Intent(this, MenuActivity::class.java))
+            startActivity(Intent(this, MenuActivity::class.java))
         }
 
         findViewById<View>(R.id.navCarrito).setOnClickListener {
             mostrarMensaje("Ir a Carrito")
-            // startActivity(Intent(this, CarritoActivity::class.java))
+            //startActivity(Intent(this, CarritoActivity::class.java))
         }
 
         findViewById<View>(R.id.navFavoritos).setOnClickListener {
             mostrarMensaje("Ir a Favoritos")
-            // startActivity(Intent(this, FavoritosActivity::class.java))
+            startActivity(Intent(this, FavoritosActivity::class.java))
         }
 
         findViewById<View>(R.id.navPerfil).setOnClickListener {
             mostrarMensaje("Ir a Perfil")
-            // startActivity(Intent(this, PerfilActivity::class.java))
+            startActivity(Intent(this, PerfilActivity::class.java))
         }
     }
 

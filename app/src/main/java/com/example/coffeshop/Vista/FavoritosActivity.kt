@@ -19,7 +19,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-import com.example.coffeshop.Inicio
 import com.example.coffeshop.R
 import com.example.coffeshop.Modelo.ProductoFavorito
 import com.example.coffeshop.Presentador.FavoritosPresentador

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FAF5EF"
-    tools:context=".Inicio">
+    tools:context=".Vista.Inicio">
 
     <!-- BARRA SUPERIOR (Header) -->
     <ImageView
