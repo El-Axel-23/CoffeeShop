@@ -1,15 +1,19 @@
+
 package com.example.coffeshop.Presentador
 
 import android.util.Patterns
+
 import com.example.coffeshop.Modelo.CrearCuentaModelo
 import com.example.coffeshop.Modelo.RespuestaAutenticacion
+
 import org.json.JSONObject
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
-
+    // INTERFAZ DE LA VISTA
     interface VistaCrearCuenta {
         fun mostrarErrorNombre(mensaje: String)
         fun mostrarErrorCorreo(mensaje: String)
@@ -20,11 +24,9 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
         fun mostrarCargando(cargando: Boolean)
         fun cuentaCreada(mensaje: String)
     }
-
     private val modelo = CrearCuentaModelo()
     private var llamadaActiva: Call<RespuestaAutenticacion>? = null
-
-    // Registrar usuario
+    // REGISTRAR USUARIO
     fun registrar(
         nombreIngresado: String,
         correoIngresado: String,
@@ -34,17 +36,15 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
     ) {
         val nombre = nombreIngresado.trim()
         val correo = correoIngresado.trim()
-
-        // Validar nombre
+        // VALIDAR NOMBRE
         if (
             nombre.isEmpty() ||
-            nombre.codePointCount(0, nombre.length) > 120
+            nombre.toByteArray(Charsets.UTF_8).size > 120
         ) {
             vista?.mostrarErrorNombre("Ingresa un nombre completo válido.")
             return
         }
-
-        // Validar correo
+        // VALIDAR CORREO
         if (
             !Patterns.EMAIL_ADDRESS.matcher(correo).matches() ||
             correo.toByteArray(Charsets.UTF_8).size > 120
@@ -52,50 +52,38 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
             vista?.mostrarErrorCorreo("Ingresa un correo electrónico válido.")
             return
         }
-
-        // Validar longitud de contraseña
+        // VALIDAR LONGITUD DE CONTRASEÑA
         val caracteres = contrasena.codePointCount(
             0,
             contrasena.length
         )
-
         if (caracteres < 15) {
             vista?.mostrarErrorContrasena("La contraseña debe contener al menos 15 caracteres.")
             return
         }
-
-        // Validar limite de bcrypt
-        if (contrasena.toByteArray(Charsets.UTF_8).size > 72) {
+        // LIMITE TECNICO INTERNO
+        if (
+            contrasena.toByteArray(Charsets.UTF_8).size > 72
+        ) {
             vista?.mostrarErrorContrasena("La contraseña supera la longitud permitida.")
             return
         }
-
-        // Validar caracter nulo
-        if (contrasena.indexOf('\u0000') >= 0) {
-            vista?.mostrarErrorContrasena("La contraseña contiene un carácter no válido.")
-            return
-        }
-
-        // Confirmar contraseña
+        // CONFIRMAR CONTRASEÑA
         if (contrasena != confirmarContrasena) {
             vista?.mostrarErrorConfirmacion("Las contraseñas no coinciden.")
             return
         }
-
-        // Validar terminos
+        // VALIDAR TERMINOS
         if (!aceptoTerminos) {
             vista?.mostrarErrorTerminos("Debes aceptar los términos y condiciones.")
             return
         }
-
-        // Evitar peticiones duplicadas
+        // EVITAR PETICIONES DUPLICADAS
         if (llamadaActiva != null) {
             return
         }
-
         vista?.mostrarCargando(true)
-
-        // Enviar datos al modelo
+        // ENVIAR DATOS AL MODELO
         val peticion = modelo.crearCuenta(
             nombre,
             correo,
@@ -103,12 +91,10 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
             confirmarContrasena,
             aceptoTerminos
         )
-
         llamadaActiva = peticion
-
         peticion.enqueue(
             object : Callback<RespuestaAutenticacion> {
-
+                // RESPUESTA DEL SERVIDOR
                 override fun onResponse(
                     call: Call<RespuestaAutenticacion>,
                     response: Response<RespuestaAutenticacion>
@@ -116,39 +102,40 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
                     if (call.isCanceled) {
                         return
                     }
-
                     llamadaActiva = null
                     vista?.mostrarCargando(false)
-
                     val datos = response.body()
-
                     if (
                         response.isSuccessful &&
                         datos != null &&
                         datos.exito
                     ) {
-                        // Cuenta registrada
-                        vista?.cuentaCreada(datos.mensaje)
-
+                        // CUENTA REGISTRADA
+                        vista?.cuentaCreada(
+                            datos.mensaje
+                        )
                     } else {
-
                         val mensaje = if (
                             datos != null && !datos.exito
                         ) {
                             datos.mensaje
+
                         } else {
                             leerMensajeError(response)
                         }
-
                         if (response.code() == 409) {
-                            // Correo duplicado
-                            vista?.mostrarErrorCorreo(mensaje)
-
+                            // CORREO DUPLICADO
+                            vista?.mostrarErrorCorreo(
+                                mensaje
+                            )
                         } else {
-                            vista?.mostrarMensaje(mensaje)
+                            vista?.mostrarMensaje(
+                                mensaje
+                            )
                         }
                     }
                 }
+                // ERROR DE CONEXION
                 override fun onFailure(
                     call: Call<RespuestaAutenticacion>,
                     t: Throwable
@@ -156,27 +143,20 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
                     if (call.isCanceled) {
                         return
                     }
-
                     llamadaActiva = null
                     vista?.mostrarCargando(false)
-                    vista?.mostrarMensaje("No fue posible conectar con el servidor. Revisa tu conexión."
-                    )
+
+                    vista?.mostrarMensaje("No fue posible conectar con el servidor. Revisa tu conexión.")
                 }
             }
         )
     }
-
-    // Obtener mensaje de error del PHP
     private fun leerMensajeError(
         response: Response<*>
     ): String {
-
         val alternativo = "Error del servidor (HTTP ${response.code()})."
-
         return try {
-
             val texto = response.errorBody()?.string()
-
             if (texto.isNullOrBlank()) {
                 alternativo
             } else {
@@ -185,13 +165,10 @@ class CrearCuentaPresentador(private var vista: VistaCrearCuenta?) {
                     alternativo
                 )
             }
-
         } catch (e: Exception) {
             alternativo
         }
     }
-
-    // Liberar la vista
     fun liberar() {
         llamadaActiva?.cancel()
         llamadaActiva = null

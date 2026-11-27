@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="#FFF9F2">
 
     <!-- BARRA SUPERIOR -->
@@ -22,17 +21,18 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- REGRESAR -->
-        <androidx.appcompat.widget.AppCompatImageButton
+        <TextView
             android:id="@+id/btnRegresarFavoritos"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:padding="4dp"
-            android:scaleType="fitCenter"
+            android:gravity="center"
+            android:text="←"
+            android:textSize="27sp"
+            android:textColor="#422018"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Regresar"
-            app:srcCompat="@drawable/ic_regresar" />
+            android:contentDescription="Regresar" />
 
         <!-- TITULO -->
         <TextView
@@ -136,7 +136,7 @@
 
     </FrameLayout>
 
-    <!-- BARRA INFERIOR -->
+    <!-- BARRA INFERIOR: SOLO DISEÑO -->
     <LinearLayout
         android:id="@+id/barraNavegacion"
         android:layout_width="0dp"
@@ -157,27 +157,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
+            android:gravity="center">
 
-            <FrameLayout
-                android:id="@+id/fondoNavInicio"
-                android:layout_width="54dp"
+            <ImageView
+                android:layout_width="25dp"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_nav_selector">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_nav_inicio"
-                    android:contentDescription="Inicio" />
-
-            </FrameLayout>
+                android:src="@drawable/ic_nav_inicio"
+                android:contentDescription="Inicio" />
 
             <TextView
-                android:id="@+id/txtNavInicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Inicio"
@@ -193,27 +181,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
+            android:gravity="center">
 
-            <FrameLayout
-                android:id="@+id/fondoNavMenu"
-                android:layout_width="54dp"
+            <ImageView
+                android:layout_width="25dp"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_nav_selector">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_nav_menu"
-                    android:contentDescription="Menú" />
-
-            </FrameLayout>
+                android:src="@drawable/ic_nav_menu"
+                android:contentDescription="Menú" />
 
             <TextView
-                android:id="@+id/txtNavMenu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Menú"
@@ -222,34 +198,22 @@
 
         </LinearLayout>
 
-        <!-- CARRITO -->
+        <!-- CARRITO: SIN CONTADOR -->
         <LinearLayout
             android:id="@+id/navCarrito"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
+            android:gravity="center">
 
-            <FrameLayout
-                android:id="@+id/fondoNavCarrito"
-                android:layout_width="54dp"
+            <ImageView
+                android:layout_width="25dp"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_nav_selector">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_nav_carrito"
-                    android:contentDescription="Carrito" />
-
-            </FrameLayout>
+                android:src="@drawable/ic_nav_carrito"
+                android:contentDescription="Carrito" />
 
             <TextView
-                android:id="@+id/txtNavCarrito"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Carrito"
@@ -258,22 +222,19 @@
 
         </LinearLayout>
 
-        <!-- FAVORITOS -->
+        <!-- FAVORITOS SELECCIONADO -->
         <LinearLayout
             android:id="@+id/navFavoritos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
+            android:gravity="center">
 
             <FrameLayout
-                android:id="@+id/fondoNavFavoritos"
                 android:layout_width="54dp"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_nav_selector">
+                android:background="@drawable/bg_nav_activo">
 
                 <ImageView
                     android:layout_width="25dp"
@@ -285,13 +246,12 @@
             </FrameLayout>
 
             <TextView
-                android:id="@+id/txtNavFavoritos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Favoritos"
                 android:textSize="12sp"
-                android:textColor="#422018"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#422018" />
 
         </LinearLayout>
 
@@ -302,27 +262,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true">
+            android:gravity="center">
 
-            <FrameLayout
-                android:id="@+id/fondoNavPerfil"
-                android:layout_width="54dp"
+            <ImageView
+                android:layout_width="25dp"
                 android:layout_height="36dp"
-                android:background="@drawable/bg_nav_selector">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_nav_perfil"
-                    android:contentDescription="Perfil" />
-
-            </FrameLayout>
+                android:src="@drawable/ic_nav_perfil"
+                android:contentDescription="Perfil" />
 
             <TextView
-                android:id="@+id/txtNavPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Perfil"

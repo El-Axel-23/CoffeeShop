@@ -1,3 +1,4 @@
+
 package com.example.coffeshop.Vista
 
 import android.content.Intent
@@ -14,10 +15,6 @@ import android.widget.Toast
 
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.OnApplyWindowInsetsListener
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 
 import com.example.coffeshop.R
 import com.example.coffeshop.Modelo.UsuarioAutenticacion
@@ -36,8 +33,6 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
-        // Ajustar la pantalla al dispositivo
-        ajustarPantalla()
         presentador = LoginPresentador(this)
         txtCorreo = findViewById(R.id.txtCorreo)
         txtContrasena = findViewById(R.id.txtContrasena)
@@ -55,38 +50,9 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
         btnVerContrasena.setOnClickListener(this)
         txtRegistrate.setOnClickListener(this)
         txtOlvidasteContrasena.setOnClickListener(this)
+
         findViewById<View>(R.id.btnGoogle).setOnClickListener(this)
         findViewById<View>(R.id.btnApple).setOnClickListener(this)
-        // Evitar que el teclado aparezca al abrir la pantalla
-        if (savedInstanceState == null) {
-            findViewById<View>(R.id.main).requestFocus()
-        }
-    }
-    // Ajustar el contenido a las barras y al teclado
-    private fun ajustarPantalla() {
-        val principal = findViewById<View>(R.id.main)
-        ViewCompat.setOnApplyWindowInsetsListener(principal, object : OnApplyWindowInsetsListener {
-                override fun onApplyWindowInsets(vista: View, insets: WindowInsetsCompat): WindowInsetsCompat {
-                    val espacios = insets.getInsets(
-                        WindowInsetsCompat.Type.systemBars() or
-                                WindowInsetsCompat.Type.displayCutout() or
-                                WindowInsetsCompat.Type.ime()
-                    )
-                    vista.setPadding(
-                        espacios.left,
-                        espacios.top,
-                        espacios.right,
-                        espacios.bottom
-                    )
-                    return WindowInsetsCompat.CONSUMED
-                }
-            }
-        )
-        ViewCompat.requestApplyInsets(principal)
-        // Mostrar iconos oscuros en las barras
-        val controlador = WindowCompat.getInsetsController(window, window.decorView)
-        controlador.isAppearanceLightStatusBars = true
-        controlador.isAppearanceLightNavigationBars = true
     }
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -94,7 +60,10 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
             R.id.btnIniciarSesion -> {
                 val correo = txtCorreo.text.toString()
                 val contrasena = txtContrasena.text.toString()
-                presentador.iniciarSesion(correo, contrasena)
+                presentador.iniciarSesion(
+                    correo,
+                    contrasena
+                )
             }
             // MOSTRAR U OCULTAR CONTRASEÑA
             R.id.btnVerContrasena -> {
@@ -102,23 +71,42 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
             }
             // ABRIR CREAR CUENTA
             R.id.txtRegistrate -> {
-                val siguiente = Intent(this, crear_cuenta::class.java)
-                siguiente.putExtra("desde_login", true)
-                siguiente.putExtra("desde_carrito", intent.getBooleanExtra("desde_carrito", false))
+                val siguiente = Intent(
+                    this,
+                    crear_cuenta::class.java
+                )
+                siguiente.putExtra(
+                    "desde_login",
+                    true
+                )
+                siguiente.putExtra(
+                    "desde_carrito",
+                    intent.getBooleanExtra(
+                        "desde_carrito",
+                        false
+                    )
+                )
                 startActivity(siguiente)
             }
             // ABRIR RECUPERAR CONTRASEÑA
             R.id.txtOlvidasteContrasena -> {
-                val siguiente = Intent(this, recuperar_contrasena::class.java)
+                val siguiente = Intent(
+                    this,
+                    recuperar_contrasena::class.java
+                )
                 startActivity(siguiente)
             }
             // GOOGLE
             R.id.btnGoogle -> {
-                mostrarMensaje("Inicio con Google aún no configurado")
+                mostrarMensaje(
+                    "Inicio con Google aún no configurado"
+                )
             }
             // APPLE
             R.id.btnApple -> {
-                mostrarMensaje("Inicio con Apple aún no configurado")
+                mostrarMensaje(
+                    "Inicio con Apple aún no configurado"
+                )
             }
         }
     }
@@ -150,7 +138,11 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
         txtContrasena.requestFocus()
     }
     override fun mostrarMensaje(mensaje: String) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            this,
+            mensaje,
+            Toast.LENGTH_LONG
+        ).show()
     }
     // CONTROLAR BOTON DURANTE LA PETICION
     override fun mostrarCargando(cargando: Boolean) {
@@ -162,10 +154,17 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
         }
     }
     // LOGIN CORRECTO
-    override fun inicioCorrecto(usuario: UsuarioAutenticacion) {
-        mostrarMensaje("Bienvenido, ${usuario.nombre_completo}")
+    override fun inicioCorrecto(
+        usuario: UsuarioAutenticacion
+    ) {
+        mostrarMensaje(
+            "Bienvenido, ${usuario.nombre_completo}"
+        )
         // ESTADO LOCAL PARA LA NAVEGACION
-        val preferencias = getSharedPreferences("CoffeeShopSesion", MODE_PRIVATE)
+        val preferencias = getSharedPreferences(
+            "CoffeeShopSesion",
+            MODE_PRIVATE
+        )
         preferencias.edit()
             .putBoolean("sesionIniciada", true)
             .putInt("id_usuario", usuario.id_usuario)
@@ -176,12 +175,27 @@ class login : AppCompatActivity(), LoginPresentador.VistaLogin, View.OnClickList
             return
         }
         // ABRIR INICIO SIN DUPLICAR PANTALLAS
-        val siguiente = Intent(this, Inicio::class.java)
-        siguiente.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        val siguiente = Intent(
+            this,
+            Inicio::class.java
+        )
+        siguiente.addFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP
+        )
         // ENVIAR DATOS DEL USUARIO
-        siguiente.putExtra("id_usuario", usuario.id_usuario)
-        siguiente.putExtra("nombre_completo", usuario.nombre_completo)
-        siguiente.putExtra("correo", usuario.correo)
+        siguiente.putExtra(
+            "id_usuario",
+            usuario.id_usuario
+        )
+        siguiente.putExtra(
+            "nombre_completo",
+            usuario.nombre_completo
+        )
+        siguiente.putExtra(
+            "correo",
+            usuario.correo
+        )
         startActivity(siguiente)
         finish()
     }

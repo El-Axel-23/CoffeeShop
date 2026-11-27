@@ -1,47 +1,68 @@
+
 package com.example.coffeshop.Modelo
 
 import retrofit2.Call
 
+// DATOS DEL PRODUCTO FAVORITO
+data class ProductoFavorito(
+    val id_producto: Int = 0,
+    val nombre: String = "",
+    val descripcion: String? = null,
+    val precio: Double = 0.0,
+    val imagen_url: String? = null,
+    val es_favorito: Int = 1
+)
+// DATOS QUE ENVIAMOS AL PHP
+data class DatosFavoritos(
+    val accion: String,
+    val id_usuario: Int,
+    val id_producto: Int? = null
+)
+// RESPUESTA DEL PHP
+data class RespuestaFavoritos(
+    val exito: Boolean = false,
+    val mensaje: String? = null,
+    val favoritos: List<ProductoFavorito>? = null
+)
+// MODELO DE FAVORITOS
 class FavoritosModelo {
-
-    // Consultar favoritos del usuario
+    // CONSULTAR FAVORITOS
     fun obtenerFavoritos(
-        id_usuario: Int
-    ): Call<dataRespuestaFavoritos> {
-
-        return RetrofitCliente.api.obtenerFavoritos(
-            id_usuario
+        idUsuario: Int
+    ): Call<RespuestaFavoritos> {
+        val datos = DatosFavoritos(
+            accion = "listar",
+            id_usuario = idUsuario
         )
-    }
-
-    // Agregar un producto a favoritos
-    fun agregarFavorito(
-        id_usuario: Int,
-        id_producto: Int
-    ): Call<dataRespuestaOperacionFavorito> {
-
-        val datos = dataPeticionFavorito(
-            id_usuario,
-            id_producto
-        )
-
-        return RetrofitCliente.api.agregarFavorito(
+        return RetrofitCliente.api.gestionarFavoritos(
             datos
         )
     }
-
-    // Eliminar un producto de favoritos
-    fun eliminarFavorito(
-        id_usuario: Int,
-        id_producto: Int
-    ): Call<dataRespuestaOperacionFavorito> {
-
-        val datos = dataPeticionFavorito(
-            id_usuario,
-            id_producto
+    // AGREGAR FAVORITO
+    fun agregarFavorito(
+        idUsuario: Int,
+        idProducto: Int
+    ): Call<RespuestaFavoritos> {
+        val datos = DatosFavoritos(
+            accion = "agregar",
+            id_usuario = idUsuario,
+            id_producto = idProducto
         )
-
-        return RetrofitCliente.api.eliminarFavorito(
+        return RetrofitCliente.api.gestionarFavoritos(
+            datos
+        )
+    }
+    // QUITAR FAVORITO
+    fun quitarFavorito(
+        idUsuario: Int,
+        idProducto: Int
+    ): Call<RespuestaFavoritos> {
+        val datos = DatosFavoritos(
+            accion = "quitar",
+            id_usuario = idUsuario,
+            id_producto = idProducto
+        )
+        return RetrofitCliente.api.gestionarFavoritos(
             datos
         )
     }

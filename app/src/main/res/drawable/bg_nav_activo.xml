@@ -2,8 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="#E8D6C5" />
+    <!-- COLOR BEIGE DE LA SECCION ACTIVA -->
+    <solid android:color="#EAD9C8" />
 
-    <corners android:radius="50dp" />
+    <!-- BORDES REDONDEADOS -->
+    <corners android:radius="24dp" />
 
 </shape>
