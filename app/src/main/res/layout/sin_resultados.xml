@@ -242,7 +242,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/ivVolver"
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:background="?attr/selectableItemBackgroundBorderless"

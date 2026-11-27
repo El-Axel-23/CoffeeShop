@@ -1,6 +1,6 @@
 package com.example.coffeshop.Presentador
 
-import com.example.coffeshop.Inicio
+import com.example.coffeshop.Vista.Inicio
 import com.example.coffeshop.Interface.ApiService
 import com.example.coffeshop.Modelo.Producto
 import com.example.coffeshop.Modelo.RespuestaInicio

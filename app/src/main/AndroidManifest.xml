@@ -17,6 +17,7 @@
 
         <!-- LOGIN: Pantalla principal -->
         <activity
+            android:name=".Vista.Inicio"
             android:name=".Vista.login"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize">
@@ -85,7 +86,7 @@
 
         <!-- Notificaciones -->
         <activity
-            android:name=".notificacion"
+            android:name=".Vista.notificacion"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
