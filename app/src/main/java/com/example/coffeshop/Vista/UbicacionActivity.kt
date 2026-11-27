@@ -29,7 +29,9 @@ class UbicacionActivity : AppCompatActivity() {
         tvDireccion = findViewById(R.id.tvDireccion)
         tvHorario = findViewById(R.id.tvHorario)
 
-        findViewById<ImageView>(R.id.btnAtras).setOnClickListener { finish() }
+        findViewById<ImageView>(R.id.btnAtras).setOnClickListener {
+            finish()
+        }
 
         presenter = UbicacionPresenter(this)
         presenter.cargarCafeteria()
